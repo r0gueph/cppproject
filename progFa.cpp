@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <float.h>
 using namespace std;
 
 struct players{
@@ -9,10 +10,7 @@ struct players{
 	
 }p[5];
 
-
 int main(int argc, char** argv) {
-	
-	
 	
 	int choice;
 	char mainCheck = 'n';
@@ -41,6 +39,7 @@ int main(int argc, char** argv) {
 		do{
 		if (i<4){
 			
+			//asks for user input when adding records to the struct
 			cout<<endl<<"Enter player nickname: ";
 			cin>>p[i].nickname;
 			cout<<"Enter age: ";
@@ -57,6 +56,7 @@ int main(int argc, char** argv) {
 		
 		else if (i=4){
 			
+			//same as above, but only when max records reached
 			cout<<endl<<"Enter player nickname: ";
 			cin>>p[i].nickname;
 			cout<<"Enter age: ";
@@ -72,7 +72,8 @@ int main(int argc, char** argv) {
 			cin>>mainCheck;
 					
 		}
-	
+			
+			
 		else if(i=5){
 			cout<<"Maximum players reached"<<endl;
 			confirm = 'n';
@@ -88,7 +89,7 @@ int main(int argc, char** argv) {
 		case 2:{
 			int n = sizeof(p)/sizeof(p[0].nickname);
 			
-			if(p[0].nickname==""){
+			if(p[0].nickname==""){//checks first element if there are no records yet and returns to menu
 				cout<<"No records yet"<<endl;
 				system("PAUSE");
 				system("CLS");
@@ -102,11 +103,11 @@ int main(int argc, char** argv) {
 				
 				for(i=0; i<5; i++){
 					
-					if(p[i].age==0){
+					if(p[i].age==0){//skips the iteration if there is no input, this prevents empty records to show in the list
 					continue;
 					}
 					
-					else{
+					else{//displays the records available
 					cout<<i+1<<"\t\t"<<p[i].nickname<<"\t\t"<<p[i].age<<"\t\t"<<p[i].hiScore1<<" & "<<p[i].hiScore2;
 					cout<<endl;
 					}
@@ -118,7 +119,7 @@ int main(int argc, char** argv) {
 			break;}
 			
 		case 3:
-			if(p[0].nickname==""){
+			if(p[0].nickname==""){//checks first element if there are no records yet and returns to menu
 				cout<<"No records yet"<<endl;
 				system("PAUSE");
 				system("CLS");
@@ -132,11 +133,11 @@ int main(int argc, char** argv) {
 			cout<<setfill(' ')<<"Player no."<<setw(14)<<"Nickname"<<setw(11)<<"\tAverage"<<endl;
 				for(i=0; i<5; i++){
 					
-					if(p[i].age==0){
+					if(p[i].age==0){//skips the iteration if there is no input, this prevents empty records to show in the list
 					continue;
 					}
 					
-					else{
+					else{//displays the records but with average
 					cout<<i+1<<"\t\t"<<p[i].nickname<<"\t\t"<<(p[i].hiScore1+p[i].hiScore2)/2;
 					cout<<endl;
 				}
@@ -150,7 +151,7 @@ int main(int argc, char** argv) {
 			break;
 		
 		case 4:{
-			if(p[0].nickname==""){
+			if(p[0].nickname==""){//checks first element if there are no records yet and returns to menu
 				cout<<"No records yet"<<endl;
 				system("PAUSE");
 				system("CLS");
@@ -219,23 +220,22 @@ int main(int argc, char** argv) {
 			else{
 				
 				float arrMin[5];
-				string arrHolder[5];
+				string smallArrHolder[5];
 				
-				float smallest = 0.0;
-				string titleHolder;
+				float smallest = FLT_MAX;
+				string smallTitleHolder;
 				
-				float secondSmallest = 0.0;
-				string titleHolder2;
+				float secondSmallest = FLT_MAX;
+				string smallTitleHolder2;
 							
 				
 				for(i=0; i<5; i++){
 						
 						arrMin[i] = (p[i].hiScore1+p[i].hiScore2)/2;
-						arrHolder[i] = p[i].nickname;
+						smallArrHolder[i] = p[i].nickname;
 						
 					}
-				
-						
+							
 				for(int i=0; i<5; ++i){
 					
 					if(smallest>arrMin[i]){
@@ -243,15 +243,15 @@ int main(int argc, char** argv) {
 						secondSmallest = smallest;
 						smallest = arrMin[i];
 						
-						titleHolder2 = titleHolder;
-						titleHolder = arrHolder[i];	
+						smallTitleHolder2 = smallTitleHolder;
+						smallTitleHolder = smallArrHolder[i];	
 						 
 					}
 					
-					else if(secondSmallest>arrMin[i] || arrMin[i] == smallest && titleHolder2!=titleHolder){
+					else if(secondSmallest>arrMin[i] || arrMin[i] == smallest && smallTitleHolder2!=smallTitleHolder){
 						
 						secondSmallest = arrMin[i];
-						titleHolder2 = arrHolder[i];
+						smallTitleHolder2 = smallArrHolder[i];
 							
 						}
 									
@@ -260,8 +260,8 @@ int main(int argc, char** argv) {
 				system("CLS");
 				cout<<"Lowest Average: "<<endl;
 				cout<<"Player Name\t\tAvg Score"<<endl;
-				cout<< titleHolder <<"\t\t\t"<< smallest << endl;
-				cout<< titleHolder2 <<"\t\t\t"<< secondSmallest << endl;
+				cout<< smallTitleHolder <<"\t\t\t"<< smallest << endl;
+				cout<< smallTitleHolder2 <<"\t\t\t"<< secondSmallest << endl;
 				system("PAUSE");
 				system("CLS");
 				
@@ -294,13 +294,3 @@ int main(int argc, char** argv) {
 	}while(mainCheck == 'y' || mainCheck == 'Y');
 	return 0;
 }
-
-/*if(titleHolder2==titleHolder&&secondLargest==largest){
-								continue;
-							}
-							else if(titleHolder2!=titleHolder&&secondLargest!=largest){
-								
-								secondLargest = arrMax[i];
-								titleHolder2 = arrHolder[i];
-								
-							}*/
