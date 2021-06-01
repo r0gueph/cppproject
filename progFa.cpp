@@ -7,7 +7,6 @@ struct players{
 	string nickname;
 	int age;
 	float hiScore1, hiScore2;
-	
 }p[5];
 
 int main(int argc, char** argv) {
@@ -39,10 +38,10 @@ int main(int argc, char** argv) {
 			if(i!=5){
 				do{
 					if (i<4){
-						
 						//asks for user input when adding records to the struct
 						cout<<endl<<"Enter player nickname: ";
-						cin>>p[i].nickname;
+						cin.ignore(1000, '\n'); 
+						getline(cin,p[i].nickname);
 						cout<<"Enter age: ";
 						cin>>p[i].age;
 						cout<<"Enter best played score 1: ";
@@ -234,7 +233,11 @@ int main(int argc, char** argv) {
 								
 					for(int i=0; i<5; ++i){
 						
-						if(smallest>arrMin[i]){
+						if(p[i].age==0){//skips the iteration if there is no input, this prevents empty records to show in the list
+							continue;
+						}
+						
+						else if(smallest>arrMin[i]){
 							//if the element in the array is smaller than the value in the variable, the smallest and secondSmallest variables are updated
 							secondSmallest = smallest;
 							smallest = arrMin[i];
