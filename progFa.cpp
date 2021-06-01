@@ -160,6 +160,9 @@ int main(int argc, char** argv) {
 			else{
 				
 				float arrMax[5];
+				float largest;
+				
+				string titleHolder;
 				float arrMax2[5];
 				string arrHolder[5];
 				string arrHolder2[5];
@@ -172,28 +175,30 @@ int main(int argc, char** argv) {
 					}
 					
 				for(int i=0; i<5; ++i){
-					if(arrMax[0]<arrMax[i]){
-						arrMax[0] = arrMax[i];
-						arrHolder[0] = arrHolder[i];
+					if(largest<arrMax[i]){
+						largest = arrMax[i];
+						titleHolder = arrHolder[i];
 					}
 				
-				for(int i=0; i<5; ++i){
+				/*for(int i=0; i<5; ++i){
 					if(arrMax2[0]<arrMax[i]){
 						if(arrHolder2[i]==arrHolder[0]&&arrMax2[i]==arrMax[0]){
 							continue;
 						}
 						else if(arrHolder2[i]!=arrHolder[0]&&arrMax2[i]==arrMax[0]){
+							if(){
 							arrMax2[0] = arrMax[i];
 							arrHolder2[0] = arrHolder[i];
+							}
 						}
 					}
-				}
+				}*/
 					
 				}
 				system("CLS");
 				cout<<"Largest Max: "<<endl;
 				cout<<"Player Name\t\tAvg Score"<<endl;
-				cout<< arrHolder[0] <<"\t\t\t"<<arrMax[0] << endl;
+				cout<< titleHolder <<"\t\t\t"<< largest << endl;
 				cout<< arrHolder2[0] <<"\t\t\t"<<arrMax2[0] << endl;
 				system("PAUSE");
 				system("CLS");
