@@ -160,12 +160,13 @@ int main(int argc, char** argv) {
 			else{
 				
 				float arrMax[5];
-				float largest;
-				
-				string titleHolder;
-				float arrMax2[5];
 				string arrHolder[5];
-				string arrHolder2[5];
+				
+				float largest = 0.0;
+				string titleHolder;
+				
+				float secondLargest = 0.0;
+				string titleHolder2;
 				
 				for(i=0; i<5; i++){
 						
@@ -175,31 +176,31 @@ int main(int argc, char** argv) {
 					}
 					
 				for(int i=0; i<5; ++i){
-					if(largest<arrMax[i]){
-						largest = arrMax[i];
-						titleHolder = arrHolder[i];
-					}
-				
-				/*for(int i=0; i<5; ++i){
-					if(arrMax2[0]<arrMax[i]){
-						if(arrHolder2[i]==arrHolder[0]&&arrMax2[i]==arrMax[0]){
-							continue;
-						}
-						else if(arrHolder2[i]!=arrHolder[0]&&arrMax2[i]==arrMax[0]){
-							if(){
-							arrMax2[0] = arrMax[i];
-							arrHolder2[0] = arrHolder[i];
-							}
-						}
-					}
-				}*/
 					
+					if(largest<arrMax[i]){
+						
+						secondLargest = largest;
+						largest = arrMax[i];
+						
+						titleHolder2 = titleHolder;
+						titleHolder = arrHolder[i];	
+						 
+					}
+					
+					else if(secondLargest<arrMax[i] || arrMax[i] == largest && titleHolder2!=titleHolder){
+						
+						secondLargest = arrMax[i];
+						titleHolder2 = arrHolder[i];
+							
+						}
+									
 				}
+				
 				system("CLS");
-				cout<<"Largest Max: "<<endl;
+				cout<<"Highest Average: "<<endl;
 				cout<<"Player Name\t\tAvg Score"<<endl;
 				cout<< titleHolder <<"\t\t\t"<< largest << endl;
-				cout<< arrHolder2[0] <<"\t\t\t"<<arrMax2[0] << endl;
+				cout<< titleHolder2 <<"\t\t\t"<< secondLargest << endl;
 				system("PAUSE");
 				system("CLS");
 			
@@ -214,11 +215,18 @@ int main(int argc, char** argv) {
 				system("CLS");
 				mainCheck = 'y';
 			}
+			
 			else{
+				
 				float arrMin[5];
-				float arrMin2[5];
 				string arrHolder[5];
-				string arrHolder2[5];
+				
+				float smallest = 0.0;
+				string titleHolder;
+				
+				float secondSmallest = 0.0;
+				string titleHolder2;
+							
 				
 				for(i=0; i<5; i++){
 						
@@ -228,35 +236,32 @@ int main(int argc, char** argv) {
 					}
 				
 						
-				for(int i=1; i<5; ++i){
-					if(arrHolder[i]==""){
-					continue;
+				for(int i=0; i<5; ++i){
+					
+					if(smallest>arrMin[i]){
+						
+						secondSmallest = smallest;
+						smallest = arrMin[i];
+						
+						titleHolder2 = titleHolder;
+						titleHolder = arrHolder[i];	
+						 
 					}
 					
-					else{
-						if(arrMin[0]>arrMin[i]){
-						arrMin[0] = arrMin[i];
-						arrHolder[0] = arrHolder[i];
+					else if(secondSmallest>arrMin[i] || arrMin[i] == smallest && titleHolder2!=titleHolder){
+						
+						secondSmallest = arrMin[i];
+						titleHolder2 = arrHolder[i];
+							
 						}
-					}
-				}
-				
-				for(int i=0; i<5; ++i){
-					if(arrMin2[0]>arrMin[i]){
-						if(arrHolder2[i]==arrHolder[0]&&arrMin2[i]==arrMin[0]){
-							continue;
-						}
-						else if(arrHolder2[i]!=arrHolder[0]&&arrMin2[i]==arrMin[0]){
-							arrMin2[0] = arrMin[i];
-							arrHolder2[0] = arrHolder[i];
-						}
-					}
+									
 				}
 				
 				system("CLS");
-				cout<<"Largest Min: "<<endl;
+				cout<<"Lowest Average: "<<endl;
 				cout<<"Player Name\t\tAvg Score"<<endl;
-				cout<< arrHolder[0] <<"\t\t\t"<<arrMin[0] << endl;
+				cout<< titleHolder <<"\t\t\t"<< smallest << endl;
+				cout<< titleHolder2 <<"\t\t\t"<< secondSmallest << endl;
 				system("PAUSE");
 				system("CLS");
 				
@@ -278,9 +283,24 @@ int main(int argc, char** argv) {
 						
 					 }
 			}
+			
+			default:{
+				cout<<"Invalid choice "<<endl;
 				
+				break;
+			}
 	}
 	
 	}while(mainCheck == 'y' || mainCheck == 'Y');
 	return 0;
 }
+
+/*if(titleHolder2==titleHolder&&secondLargest==largest){
+								continue;
+							}
+							else if(titleHolder2!=titleHolder&&secondLargest!=largest){
+								
+								secondLargest = arrMax[i];
+								titleHolder2 = arrHolder[i];
+								
+							}*/
